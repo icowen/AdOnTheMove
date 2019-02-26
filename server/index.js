@@ -16,5 +16,5 @@ mongoose.connect(db)
 app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/../react-client/dist`));
 app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}!`);
+    console.log(`Listening on port ${PORT}!`);
 });
