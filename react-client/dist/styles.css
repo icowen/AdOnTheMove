@@ -1,0 +1,12 @@
+.content {
+    display: inline-flex;
+}
+
+.section-header {
+    text-align: center;
+    font-size: large;
+    color: #ffb100;
+    background-color: #1c1835;
+    padding: 8px;
+    margin: 8px;
+}
