@@ -1,5 +1,7 @@
 .content {
     display: inline-flex;
+    width: 100%;
+    height: 50vh;
 }
 
 .section-header {
@@ -9,4 +11,42 @@
     background-color: #1c1835;
     padding: 8px;
     margin: 8px;
+}
+
+.section-content {
+    height: inherit;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.section-container {
+    height: inherit;
+    width: 25vw;
+    margin: 8px;
+    padding: 8px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: #ffb100;
+    background-color: #1c1835;
+    padding: 8px;
+}
+
+.media {
+    margin: 4px;
+    background-color: #ffb100;
+    color: #1c1835;
+}
+.media:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+.media-info {
+    background-color: #1c1835;
+    color: white;
+    margin-left: 8px;
 }
