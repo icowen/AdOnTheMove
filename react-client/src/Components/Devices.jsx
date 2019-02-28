@@ -13,7 +13,7 @@ class Devices extends Component {
     }
 
     componentDidMount () {
-        fetch('http://api.reveldigital.com/api/devices?api_key=JqZcD6X-fxF_HX6TBHeeKQ&include_snap=true')
+        fetch('https://api.reveldigital.com/api/devices?api_key=JqZcD6X-fxF_HX6TBHeeKQ&include_snap=true')
             .then(results => {return results.json()})
             .then(data => {
                 let devices = data.map((d) =>
@@ -24,9 +24,9 @@ class Devices extends Component {
 
     render() {
         return (
-                <div>
+                <div className={'section-container'}>
                     <div className={'section-header'}>{"Devices"}</div>
-                    <div>{this.state.component}</div>
+                    <div className={'section-content'}>{this.state.component}</div>
                 </div>
         )
     }

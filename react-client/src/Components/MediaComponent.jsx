@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
 import Devices from "./Devices";
+import MediaItem from "./MediaItem";
 
-class Media extends Component {
+class MediaComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,28 +15,24 @@ class Media extends Component {
     }
 
     componentDidMount () {
-        fetch('http://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
+        fetch('https://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
             .then(results => {return results.json()})
             .then(data => {
                 let devices = data.map((d) =>
                     {return (
-                    <ul>
-                        <li>{d.name}</li>
-                        <ul>
-                            <li>{d.group_name}</li>
-                        </ul>
-                    </ul>)});
+                        <MediaItem data={d}/>
+                        )});
                 this.setState({component: devices})})
             .catch(err => console.error("Failed API call: ", err));
     }
 
     render() {
         return (
-            <div>
+            <div className={'section-container'}>
                 <div className={'section-header'}>{"Media"}</div>
-                <div>{this.state.component}</div>
+                <div className={'section-content'}>{this.state.component}</div>
             </div>
         )
     }
 }
-export default Media;
+export default MediaComponent;
