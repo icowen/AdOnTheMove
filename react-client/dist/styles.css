@@ -10,20 +10,23 @@
     color: #ffb100;
     background-color: #1c1835;
     padding: 8px;
-    margin: 8px;
+    position: sticky;
+    top: 0px;
 }
 
 .section-content {
-    height: inherit;
-    overflow-y: auto;
     padding: 8px;
 }
 
 .section-container {
+    min-height: 240px;
     height: inherit;
     width: 25vw;
     margin: 8px;
     padding: 8px;
+    border: solid black;
+    border-radius: 4px;
+    overflow-y: auto;
 }
 
 .page-title {
@@ -37,8 +40,6 @@
 
 .media {
     margin: 4px;
-    background-color: #ffb100;
-    color: #1c1835;
 }
 .media:hover {
     background-color: gray;
