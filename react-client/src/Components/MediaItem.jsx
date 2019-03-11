@@ -17,13 +17,13 @@ class MediaItem extends Component {
     render() {
         const d = this.props.data;
         return(
-            <div>
-                <div className={'media'} onClick={this.onClick}>{d.name}</div>
+            <div id={d.name}>
+                <div className={'component-item'} onClick={this.onClick}>{d.name}</div>
                 <Collapse isOpened={this.state.isOpened}>
-                    <div className={'media-info'}>{`ID: ${d.id}`}</div>
-                    <div className={'media-info'}>{`Group Name: ${d.group_name}`}</div>
-                    <div className={'media-info'}>{`Group ID: ${d.group_id}`}</div>
-                    <div className={'media-info'}>{`Uploaded On: ${d.uploaded_on}`}</div>
+                    <div className={'item-info'}>{`ID: ${d.id}`}</div>
+                    <div className={'item-info'}>{`Group Name: ${d.group_name}`}</div>
+                    <div className={'item-info'}>{`Group ID: ${d.group_id}`}</div>
+                    <div className={'item-info'}>{`Uploaded On: ${d.uploaded_on}`}</div>
                 </Collapse>
             </div>
         );

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
 
-class Devices extends Component {
+class DevicesComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             component: <Loader  type={"Ball-Triangle"}
                                 color={"#00BFFF"}
                                 height={50}
-                                width={50}/>
+                                width={50}/>,
+            selectedDevices: null
         }
     }
 
@@ -17,7 +18,8 @@ class Devices extends Component {
             .then(results => {return results.json()})
             .then(data => {
                 let devices = data.map((d) =>
-                    {return (<li>{d.name}</li>)});
+                    {return (<option className={'component-item'}>{d.name}</option>)});
+                let selectDevice = <select multiple={true}>devices</select>;
             this.setState({component: devices})})
             .catch(err => console.error("Failed API call: ", err));
     }
@@ -31,4 +33,4 @@ class Devices extends Component {
         )
     }
 }
-export default Devices;
+export default DevicesComponent;

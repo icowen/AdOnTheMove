@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Devices from './Devices';
+import DevicesComponent from './DevicesComponent';
 import MediaComponent from "./MediaComponent";
 
 class HomePage extends Component {
@@ -8,7 +8,7 @@ class HomePage extends Component {
             <div className={'page'}>
                 <div className={'page-title'}>{"Ad On The Move"}</div>
                 <div className={'content'}>
-                    <Devices/>
+                    <DevicesComponent/>
                     <MediaComponent/>
                 </div>
             </div>

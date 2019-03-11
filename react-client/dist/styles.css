@@ -38,16 +38,17 @@
     padding: 8px;
 }
 
-.media {
+.component-item {
     margin: 4px;
 }
-.media:hover {
+.component-item:hover {
     background-color: gray;
     cursor: pointer;
 }
 
-.media-info {
+.item {
     background-color: #1c1835;
     color: white;
     margin-left: 8px;
+    padding: 4px;
 }
