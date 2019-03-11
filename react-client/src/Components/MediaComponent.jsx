@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
-import {helperFunctions} from "../Helpers/HelperFunctions"
+import {sortAlphabetically} from "../Helpers/HelperFunctions"
 import MediaItem from "./MediaItem";
 
 class MediaComponent extends Component {
@@ -18,10 +18,10 @@ class MediaComponent extends Component {
         fetch('https://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
             .then(results => {return results.json()})
             .then(data => {
-                let devices = data.sort(helperFunctions)
+                let devices = data.sort(sortAlphabetically)
                     .map((d) =>
                         {return (
-                            <MediaItem data={d}/>
+                            <MediaItem id={d.id} data={d}/>
                             )
                         });
                 this.setState({component: devices})})
