@@ -19,14 +19,9 @@
 }
 
 .section-container {
-    min-height: 240px;
-    height: inherit;
     width: 25vw;
     margin: 8px;
     padding: 8px;
-    border: solid black;
-    border-radius: 4px;
-    overflow-y: auto;
 }
 
 .page-title {
