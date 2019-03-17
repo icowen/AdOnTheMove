@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Collapse} from 'react-collapse';
+import PropTypes from 'prop-types';
 
 class MediaItem extends Component {
     constructor(props) {
@@ -29,5 +30,10 @@ class MediaItem extends Component {
         );
     }
 }
+
+MediaItem.propTypes = {
+    d: PropTypes.array,
+    id: PropTypes.string
+};
 
 export default MediaItem;
