@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {sortAlphabetically} from "../Helpers/HelperFunctions";
 import ParameterComponent from "./ParameterComponent";
+import "react-datepicker/dist/react-datepicker.css";
+import DateSelector from "./DateSelector";
 
 class HomePage extends Component {
     constructor(props) {
@@ -9,12 +11,16 @@ class HomePage extends Component {
             media: null,
             devices: null,
             selectedMedia: null,
-            selectedDevices: null
+            selectedDevices: null,
+            startDate: null,
+            endDate: null
         };
         this.getMedia = this.getMedia.bind(this);
         this.getDevices = this.getDevices.bind(this);
         this.selectedMedia = this.selectedMedia.bind(this);
         this.selectedDevices = this.selectedDevices.bind(this);
+        this.handleChangeEnd = this.handleChangeEnd.bind(this);
+        this.handleChangeStart = this.handleChangeStart.bind(this);
     }
 
     async getMedia() {
@@ -43,6 +49,15 @@ class HomePage extends Component {
         this.setState({selectedDevices: selectedDevices});
     }
 
+    handleChangeStart(startDate) {
+        this.setState({startDate: startDate});
+        console.log(startDate);
+    }
+
+    handleChangeEnd(endDate) {
+        this.setState({endDate: endDate});
+    }
+
     render() {
         return (
             <div className={'page'}>
@@ -56,6 +71,10 @@ class HomePage extends Component {
                                         value={this.state.selectedMedia}
                                         getOptions={this.getMedia}
                                         selected={this.selectedMedia}/>
+                    <DateSelector startDate={this.state.startDate}
+                                  endDate={this.state.endDate}
+                                  startChange={this.handleChangeStart}
+                                  endChange={this.handleChangeEnd}/>
                 </div>
             </div>
         )

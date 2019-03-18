@@ -45,3 +45,20 @@
     margin-left: 8px;
     padding: 4px;
 }
+
+.date-picker {
+    display: inline-flex;
+}
+
+.date-left {
+    margin: 4px;
+    padding: 4px;
+    width: 80%;
+}
+
+.date-right {
+    margin: 4px;
+    padding: 4px;
+    width: 80%;
+    float: right;
+}
