@@ -22,6 +22,7 @@ describe('DateSelector', function () {
         expect(props.showTimeSelect).toEqual(true);
         expect(props.placeholderText).toEqual('Choose start date...');
         expect(props.onChange).toEqual(startChange);
+        expect(props.isClearable).toEqual(true);
     });
 
     it('should pass in the correct props to end DatePicker', function () {
@@ -33,5 +34,6 @@ describe('DateSelector', function () {
         expect(props.showTimeSelect).toEqual(true);
         expect(props.placeholderText).toEqual('Choose end date...');
         expect(props.onChange).toEqual(endChange);
+        expect(props.isClearable).toEqual(true);
     });
 });

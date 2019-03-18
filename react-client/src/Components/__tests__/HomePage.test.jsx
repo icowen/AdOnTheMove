@@ -33,4 +33,12 @@ describe('HomePage', function () {
         expect(DeviceComponent.name).toEqual('Devices');
         expect(DeviceComponent.value).toEqual(null);
     });
+
+    it('should have a dateSelector with correct props', function () {
+        let dateSelector = homePage.find('DateSelector');
+        expect(dateSelector.length).toEqual(1);
+        let props = dateSelector.props();
+        expect(props.startDate).toEqual(null);
+        expect(props.endDate).toEqual(null);
+    });
 });

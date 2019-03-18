@@ -21,6 +21,7 @@ class DateSelector extends Component {
                                     endDate={endDate}
                                     selectsStart={true}
                                     showTimeSelect={true}
+                                    isClearable={true}
                                     placeholderText={'Choose start date...'}
                                     onChange={startChange}/>
                         <DatePicker className={'date-right'}
@@ -29,6 +30,7 @@ class DateSelector extends Component {
                                     endDate={endDate}
                                     selectsEnd={true}
                                     showTimeSelect={true}
+                                    isClearable={true}
                                     placeholderText={'Choose end date...'}
                                     onChange={endChange}/>
                     </div>

@@ -51,7 +51,6 @@ class HomePage extends Component {
 
     handleChangeStart(startDate) {
         this.setState({startDate: startDate});
-        console.log(startDate);
     }
 
     handleChangeEnd(endDate) {
