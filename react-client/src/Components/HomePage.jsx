@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {sortAlphabetically} from "../Helpers/HelperFunctions";
+import {sortByGroup, sortByName} from "../Helpers/HelperFunctions";
 import ParameterComponent from "./ParameterComponent";
 import "react-datepicker/dist/react-datepicker.css";
 import DateSelector from "./DateSelector";
@@ -27,18 +27,22 @@ class HomePage extends Component {
         const response = await fetch('https://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
-        let media = json.sort(sortAlphabetically);
+        let media = json.sort(sortByName);
         this.setState({media: media});
-        return media.map((d) => {return {value: d.id, label: d.name}});
+        return media
+            .sort(sortByGroup)
+            .map((d) => {
+                let name = `[${d.group_name}] ${d.name}`;
+                return {value: d.id, label: name}});
     }
 
     async getDevices() {
         const response = await fetch('https://api.reveldigital.com/api/devices?api_key=JqZcD6X-fxF_HX6TBHeeKQ&include_snap=true')
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
-        let devices = json.sort(sortAlphabetically);
+        let devices = json.sort(sortByName);
         this.setState({devices: devices});
-        return devices.map((d) => {return {value: d.id, label: d.name}});
+        return devices.map((d) =>{return {value: d.id, label: d.name}});
     }
 
     selectedMedia(selectedMedia) {
@@ -66,14 +70,14 @@ class HomePage extends Component {
                                         value={this.state.selectedDevices}
                                         getOptions={this.getDevices}
                                         selected={this.selectedDevices}/>
-                    <ParameterComponent name={'Media'}
-                                        value={this.state.selectedMedia}
-                                        getOptions={this.getMedia}
-                                        selected={this.selectedMedia}/>
                     <DateSelector startDate={this.state.startDate}
                                   endDate={this.state.endDate}
                                   startChange={this.handleChangeStart}
                                   endChange={this.handleChangeEnd}/>
+                    <ParameterComponent name={'Media'}
+                                        value={this.state.selectedMedia}
+                                        getOptions={this.getMedia}
+                                        selected={this.selectedMedia}/>
                 </div>
             </div>
         )

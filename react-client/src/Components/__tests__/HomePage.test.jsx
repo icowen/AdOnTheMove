@@ -15,7 +15,7 @@ describe('HomePage', function () {
 
 
     it('should contain two parameter components', function () {
-        expect(homePage.find("ParameterComponent").length).toEqual(2);
+        expect(homePage.find("MediaComponent").length).toEqual(2);
     });
 
     it('should call fetch to get devices', function () {
@@ -29,7 +29,7 @@ describe('HomePage', function () {
     });
 
     it('should pass in the correct props to each parameter component', function () {
-        let DeviceComponent = homePage.find('ParameterComponent').first().props();
+        let DeviceComponent = homePage.find('MediaComponent').first().props();
         expect(DeviceComponent.name).toEqual('Devices');
         expect(DeviceComponent.value).toEqual(null);
     });

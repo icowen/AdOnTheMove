@@ -17,7 +17,7 @@
 }
 
 .section-container {
-    width: 25vw;
+    width: 33vw;
     margin: 8px;
     padding: 8px;
 }
@@ -48,17 +48,18 @@
 
 .date-picker {
     display: inline-flex;
+    width: 100%;
 }
 
 .date-left {
-    margin: 4px;
+    margin: 4px 0 4px 4px;
     padding: 4px;
-    width: 80%;
+    width: 75%;
 }
 
 .date-right {
-    margin: 4px;
+    margin: 4px 4px 4px 0;
     padding: 4px;
-    width: 80%;
+    width: 75%;
     float: right;
 }
