@@ -2,6 +2,7 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, '/react-client/src');
 const DIST_DIR = path.join(__dirname, '/react-client/dist');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 module.exports = {
     entry: ['@babel/polyfill', `${SRC_DIR}/index.jsx`],
     output: {
@@ -38,6 +39,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
-        })
+        }),
+        new Dotenv()
     ]
 };

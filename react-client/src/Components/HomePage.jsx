@@ -15,6 +15,7 @@ class HomePage extends Component {
             startDate: null,
             endDate: null
         };
+        this.api_key = process.env.REACT_APP_API_KEY;
         this.getMedia = this.getMedia.bind(this);
         this.getDevices = this.getDevices.bind(this);
         this.selectedMedia = this.selectedMedia.bind(this);
@@ -24,7 +25,7 @@ class HomePage extends Component {
     }
 
     async getMedia() {
-        const response = await fetch('https://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
+        const response = await fetch('https://api.reveldigital.com/api/media?api_key='+`${this.api_key}`)
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
         let media = json.sort(sortByName);
@@ -37,7 +38,7 @@ class HomePage extends Component {
     }
 
     async getDevices() {
-        const response = await fetch('https://api.reveldigital.com/api/devices?api_key=JqZcD6X-fxF_HX6TBHeeKQ&include_snap=true')
+        const response = await fetch(`https://api.reveldigital.com/api/devices?api_key=${this.api_key}&include_snap=true`)
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
         let devices = json.sort(sortByName);
