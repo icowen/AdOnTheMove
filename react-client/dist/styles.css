@@ -64,3 +64,26 @@
     width: 75%;
     float: right;
 }
+
+.get-report {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-button {
+    margin: 8px 8px 0 8px;
+    padding: 8px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    background-color: #1c1835;
+    color: white;
+    border: none;
+    font-size: 24px;
+}
+
+.report-button:hover {
+    color: #ffb100;
+    cursor: pointer;
+    opacity: .6;
+}

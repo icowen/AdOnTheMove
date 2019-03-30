@@ -11,8 +11,8 @@ class HomePage extends Component {
         this.state = {
             media: null,
             devices: null,
-            selectedMedia: null,
-            selectedDevices: null,
+            selectedMedia: [],
+            selectedDevices: [],
             selectedReport: null,
             startDate: null,
             endDate: null
@@ -20,6 +20,7 @@ class HomePage extends Component {
         this.api_key = process.env.REACT_APP_API_KEY;
         this.getMedia = this.getMedia.bind(this);
         this.getDevices = this.getDevices.bind(this);
+        this.getReport = this.getReport.bind(this);
         this.selectedMedia = this.selectedMedia.bind(this);
         this.selectedDevices = this.selectedDevices.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
@@ -47,6 +48,10 @@ class HomePage extends Component {
         let devices = json.sort(sortByName);
         this.setState({devices: devices});
         return devices.map((d) =>{return {value: d.id, label: d.name}});
+    }
+
+    async getReport() {
+        console.log(this.state);
     }
 
     selectedMedia(selectedMedia) {
@@ -85,6 +90,9 @@ class HomePage extends Component {
         return (
             <div className={'page'}>
                 <div className={'page-title'}>{"Ad On The Move"}</div>
+                <div className={'get-report'}>
+                    <button className={'report-button'} onClick={this.getReport}>{'Get Report'}</button>
+                </div>
                 <div className={'content'}>
                     <ParameterContainer name={'Report'}
                                         component={reportComponent}/>
