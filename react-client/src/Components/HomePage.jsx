@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {sortByGroup, sortByName} from "../Helpers/HelperFunctions";
-import ParameterComponent from "./ParameterComponent";
-import "react-datepicker/dist/react-datepicker.css";
-import DateSelector from "./DateSelector";
+import DateSelectorComponent from "./DateSelectorComponent";
+import ReportSelectorComponent from "./ReportSelectorComponent";
+import ParameterContainer from "./ParameterContainer";
+import AsyncComponent from "./AsyncComponent";
 
 class HomePage extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class HomePage extends Component {
             devices: null,
             selectedMedia: null,
             selectedDevices: null,
+            selectedReport: null,
             startDate: null,
             endDate: null
         };
@@ -22,6 +24,7 @@ class HomePage extends Component {
         this.selectedDevices = this.selectedDevices.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this);
+        this.selectedReport = this.selectedReport.bind(this);
     }
 
     async getMedia() {
@@ -54,6 +57,10 @@ class HomePage extends Component {
         this.setState({selectedDevices: selectedDevices});
     }
 
+    selectedReport(selectedReport) {
+        this.setState({selectedReport: selectedReport});
+    }
+
     handleChangeStart(startDate) {
         this.setState({startDate: startDate});
     }
@@ -63,22 +70,30 @@ class HomePage extends Component {
     }
 
     render() {
+        let reportComponent = <ReportSelectorComponent value={this.state.selectedReport}
+                                                       selected={this.selectedReport}/>;
+        let deviceComponent = <AsyncComponent value={this.state.selectedDevices}
+                                              getOptions={this.getDevices}
+                                              selected={this.selectedDevices}/>;
+        let dateComponent = <DateSelectorComponent startDate={this.state.startDate}
+                                                   endDate={this.state.endDate}
+                                                   startChange={this.handleChangeStart}
+                                                   endChange={this.handleChangeEnd}/>;
+        let mediaComponent = <AsyncComponent value={this.state.selectedMedia}
+                                             getOptions={this.getMedia}
+                                             selected={this.selectedMedia}/>;
         return (
             <div className={'page'}>
                 <div className={'page-title'}>{"Ad On The Move"}</div>
                 <div className={'content'}>
-                    <ParameterComponent name={'Devices'}
-                                        value={this.state.selectedDevices}
-                                        getOptions={this.getDevices}
-                                        selected={this.selectedDevices}/>
-                    <DateSelector startDate={this.state.startDate}
-                                  endDate={this.state.endDate}
-                                  startChange={this.handleChangeStart}
-                                  endChange={this.handleChangeEnd}/>
-                    <ParameterComponent name={'Media'}
-                                        value={this.state.selectedMedia}
-                                        getOptions={this.getMedia}
-                                        selected={this.selectedMedia}/>
+                    <ParameterContainer name={'Report'}
+                                        component={reportComponent}/>
+                    <ParameterContainer name={'Devices'}
+                                        component={deviceComponent}/>
+                    <ParameterContainer name={'Date'}
+                                        component={dateComponent}/>
+                    <ParameterContainer name={'Media'}
+                                        component={mediaComponent}/>
                 </div>
             </div>
         )

@@ -1,44 +1,54 @@
 import React from "react";
 import {shallow} from "enzyme";
 import HomePage from "../HomePage";
+import ReportSelectorComponent from "../ReportSelectorComponent";
 
 
 describe('HomePage', function () {
     let homePage;
+    const mockDeviceReturn = [ { value: 'id1', label: 'name1' },
+                               { value: 'id2', label: 'name2' },
+                               { value: 'id3', label: 'name3' } ];
+    const mockMediaReturn = [ { value: 'id1', label: '[group1] name1' },
+                              { value: 'id2', label: '[group2] name2' },
+                              { value: 'id3', label: '[group3] name3' } ];
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve({
-            id: 'id',
-            name: 'name'
-        })
+        json: () => Promise.resolve([{
+            id: 'id2',
+            name: 'name2',
+            group_name: 'group2'
+        }, {
+            id: 'id1',
+            name: 'name1',
+            group_name: 'group1'
+        }, {
+            id: 'id3',
+            name: 'name3',
+            group_name: 'group3'
+        }])
     }));
     beforeEach(() => {homePage = shallow(<HomePage/>)});
 
 
     it('should contain two parameter components', function () {
-        expect(homePage.find("MediaComponent").length).toEqual(2);
+        expect(homePage.find("ParameterContainer").length).toEqual(4);
     });
 
-    it('should call fetch to get devices', function () {
-        homePage.instance().getDevices();
-        expect(window.fetch).toHaveBeenCalledWith('https://api.reveldigital.com/api/devices?api_key=JqZcD6X-fxF_HX6TBHeeKQ&include_snap=true');
+    it('should call fetch to get devices', async () => {
+        expect(await homePage.instance().getDevices()).toEqual(mockDeviceReturn);
     });
 
-    it('should call fetch to get media', function () {
-        homePage.instance().getMedia();
-        expect(window.fetch).toHaveBeenCalledWith('https://api.reveldigital.com/api/media?api_key=JqZcD6X-fxF_HX6TBHeeKQ')
+    it('should call fetch to get media', async () => {
+        expect(await homePage.instance().getMedia()).toEqual(mockMediaReturn);
     });
 
     it('should pass in the correct props to each parameter component', function () {
-        let DeviceComponent = homePage.find('MediaComponent').first().props();
-        expect(DeviceComponent.name).toEqual('Devices');
-        expect(DeviceComponent.value).toEqual(null);
+        let DeviceContainer = homePage.find('ParameterContainer').first().props();
+        expect(DeviceContainer.name).toEqual('Report');
+        expect(DeviceContainer.component.type).toEqual(<ReportSelectorComponent/>.type);
     });
 
-    it('should have a dateSelector with correct props', function () {
-        let dateSelector = homePage.find('DateSelector');
-        expect(dateSelector.length).toEqual(1);
-        let props = dateSelector.props();
-        expect(props.startDate).toEqual(null);
-        expect(props.endDate).toEqual(null);
+    it('should have four parameterContainers', function () {
+        expect(homePage.find('ParameterContainer').length).toEqual(4);
     });
 });
