@@ -4,6 +4,7 @@ import DateSelectorComponent from "./DateSelectorComponent";
 import ReportSelectorComponent from "./ReportSelectorComponent";
 import ParameterContainer from "./ParameterContainer";
 import AsyncComponent from "./AsyncComponent";
+import API_KEY from '../constants';
 
 class HomePage extends Component {
     constructor(props) {
@@ -17,7 +18,6 @@ class HomePage extends Component {
             startDate: null,
             endDate: null
         };
-        this.api_key = process.env.REACT_APP_API_KEY;
         this.getMedia = this.getMedia.bind(this);
         this.getDevices = this.getDevices.bind(this);
         this.getReport = this.getReport.bind(this);
@@ -29,7 +29,7 @@ class HomePage extends Component {
     }
 
     async getMedia() {
-        const response = await fetch('https://api.reveldigital.com/api/media?api_key='+`${this.api_key}`)
+        const response = await fetch('https://api.reveldigital.com/api/media?api_key='+`${API_KEY}`)
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
         let media = json.sort(sortByName);
@@ -42,7 +42,7 @@ class HomePage extends Component {
     }
 
     async getDevices() {
-        const response = await fetch(`https://api.reveldigital.com/api/devices?api_key=${this.api_key}&include_snap=true`)
+        const response = await fetch(`https://api.reveldigital.com/api/devices?api_key=${API_KEY}&include_snap=true`)
             .catch(err => console.error("Failed API call: ", err));
         const json = await response.json();
         let devices = json.sort(sortByName);
